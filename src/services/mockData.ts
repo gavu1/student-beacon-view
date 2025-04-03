@@ -122,3 +122,66 @@ export const courseGrades = [
     ]
   }
 ];
+
+// Adding missing exports that Dashboard.tsx requires
+export const attendanceData = {
+  overall: 85, // Overall attendance percentage
+  subjects: [
+    { name: "PROGRAMMING IN JAVA", attendance: 90 },
+    { name: "OPERATING SYSTEMS", attendance: 82 },
+    { name: "DATA SCIENCE TOOLBOX: PYTHON PROGRAMMING", attendance: 88 },
+    { name: "ARTIFICIAL INTELLIGENCE ESSENTIALS", attendance: 78 },
+    { name: "DESIGN AND ANALYSIS OF ALGORITHMS", attendance: 86 }
+  ]
+};
+
+export const pendingAssignments = [
+  { 
+    id: 1, 
+    title: "Java Programming Assignment 3", 
+    course: "CSE310", 
+    dueDate: "2025-04-10", 
+    status: "Pending" 
+  },
+  { 
+    id: 2, 
+    title: "OS Lab Exercise 5", 
+    course: "CSE325", 
+    dueDate: "2025-04-12", 
+    status: "Pending" 
+  },
+  { 
+    id: 3, 
+    title: "Algorithm Analysis Report", 
+    course: "CSE408", 
+    dueDate: "2025-04-15", 
+    status: "Pending" 
+  }
+];
+
+export const announcements = [
+  {
+    id: 1,
+    title: "Mid Semester Exam Schedule",
+    content: "Mid semester exams will begin from April 10th, 2025. Please check the exam schedule on the university portal.",
+    date: "2025-04-03"
+  },
+  {
+    id: 2,
+    title: "Campus Placement Drive",
+    content: "Major tech companies will be visiting for campus placements on April 22nd. Register through the placement portal.",
+    date: "2025-04-02"
+  },
+  {
+    id: 3,
+    title: "Lab Maintenance Notice",
+    content: "Computer labs will be closed for maintenance on April 5th and 6th. Plan your work accordingly.",
+    date: "2025-04-01"
+  },
+  {
+    id: 4,
+    title: "Holiday Announcement",
+    content: "The university will remain closed on April 14th on account of Dr. Ambedkar Jayanti.",
+    date: "2025-03-30"
+  }
+];
