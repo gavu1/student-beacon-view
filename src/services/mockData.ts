@@ -1,4 +1,3 @@
-
 // Mock data for the student dashboard
 
 // Student profile
@@ -15,22 +14,21 @@ export const studentProfile = {
   advisor: "Dr. Amit Kumar",
 };
 
-// CGPA data by semester
+// CGPA data by semester (updated to 10.0 scale)
 export const cgpaData = [
-  { semester: "Semester 1", gpa: 3.7, credits: 18 },
-  { semester: "Semester 2", gpa: 3.8, credits: 20 },
-  { semester: "Semester 3", gpa: 3.5, credits: 19 },
-  { semester: "Semester 4", gpa: 3.9, credits: 21 },
-  { semester: "Semester 5", gpa: 3.6, credits: 18 },
-  { semester: "Current", gpa: 3.8, credits: 20 },
+  { semester: "Semester 1", gpa: 0, credits: 18, status: "Awaited" },
+  { semester: "Semester 2", gpa: 0, credits: 20, status: "Awaited" },
+  { semester: "Semester 3", gpa: 0, credits: 19, status: "Awaited" },
+  { semester: "Current (Sem 4)", gpa: 8.5, credits: 21, status: "Completed" },
 ];
 
 // Calculate CGPA
 export const calculateCGPA = () => {
+  const completedSemesters = cgpaData.filter(sem => sem.status === "Completed");
   let totalPoints = 0;
   let totalCredits = 0;
   
-  cgpaData.forEach(sem => {
+  completedSemesters.forEach(sem => {
     totalPoints += sem.gpa * sem.credits;
     totalCredits += sem.credits;
   });
@@ -38,39 +36,33 @@ export const calculateCGPA = () => {
   return totalCredits > 0 ? (totalPoints / totalCredits).toFixed(2) : "N/A";
 };
 
-// Course-wise grades data
+// Course-wise grades data (updated for semesters)
 export const courseGrades = [
   { 
-    semester: "Current Semester", 
+    semester: "Current Semester (4)", 
     courses: [
-      { code: "CS401", name: "Data Structures", credits: 4, grade: "A", gpa: 4.0 },
-      { code: "CS402", name: "Algorithm Design", credits: 4, grade: "A-", gpa: 3.7 },
-      { code: "CS403", name: "Database Systems", credits: 3, grade: "B+", gpa: 3.3 },
-      { code: "CS404", name: "Computer Networks", credits: 3, grade: "A", gpa: 4.0 },
-      { code: "MA401", name: "Probability & Statistics", credits: 3, grade: "B+", gpa: 3.3 },
-      { code: "HU401", name: "Technical Communication", credits: 3, grade: "A-", gpa: 3.7 }
+      { code: "CS401", name: "Data Structures", credits: 4, grade: "A", gpa: 9.0 },
+      { code: "CS402", name: "Algorithm Design", credits: 4, grade: "A-", gpa: 8.0 },
+      { code: "CS403", name: "Database Systems", credits: 3, grade: "B+", gpa: 7.5 },
+      { code: "CS404", name: "Computer Networks", credits: 3, grade: "A", gpa: 9.0 },
+      { code: "MA401", name: "Probability & Statistics", credits: 3, grade: "B+", gpa: 7.5 },
+      { code: "HU401", name: "Technical Communication", credits: 3, grade: "A-", gpa: 8.0 }
     ]
   },
   { 
-    semester: "Semester 5", 
-    courses: [
-      { code: "CS301", name: "Operating Systems", credits: 4, grade: "A-", gpa: 3.7 },
-      { code: "CS302", name: "Software Engineering", credits: 3, grade: "B+", gpa: 3.3 },
-      { code: "CS303", name: "Theory of Computation", credits: 3, grade: "A", gpa: 4.0 },
-      { code: "CS304", name: "Computer Architecture", credits: 4, grade: "B+", gpa: 3.3 },
-      { code: "MA301", name: "Discrete Mathematics", credits: 3, grade: "A-", gpa: 3.7 }
-    ]
+    semester: "Semester 3", 
+    status: "Awaited",
+    courses: []
   },
   { 
-    semester: "Semester 4", 
-    courses: [
-      { code: "CS201", name: "Object-Oriented Programming", credits: 4, grade: "A", gpa: 4.0 },
-      { code: "CS202", name: "Data Communication", credits: 3, grade: "A", gpa: 4.0 },
-      { code: "CS203", name: "Web Technologies", credits: 4, grade: "A-", gpa: 3.7 },
-      { code: "CS204", name: "Digital Logic Design", credits: 4, grade: "A", gpa: 4.0 },
-      { code: "MA201", name: "Linear Algebra", credits: 3, grade: "B+", gpa: 3.3 },
-      { code: "HU201", name: "Economics for Engineers", credits: 3, grade: "A-", gpa: 3.7 }
-    ]
+    semester: "Semester 2", 
+    status: "Awaited",
+    courses: []
+  },
+  { 
+    semester: "Semester 1", 
+    status: "Awaited",
+    courses: []
   }
 ];
 

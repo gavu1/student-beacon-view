@@ -7,9 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import Dashboard from "./pages/Dashboard";
 import CGPADetail from "./pages/CGPADetail";
-import AttendanceDetail from "./pages/AttendanceDetail";
-import Profile from "./pages/Profile";
-import Assignments from "./pages/Assignments";
+import ServerDown from "./pages/ServerDown";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -23,9 +21,10 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Layout><Dashboard /></Layout>} />
           <Route path="/cgpa" element={<Layout><CGPADetail /></Layout>} />
-          <Route path="/attendance" element={<Layout><AttendanceDetail /></Layout>} />
-          <Route path="/profile" element={<Layout><Profile /></Layout>} />
-          <Route path="/assignments" element={<Layout><Assignments /></Layout>} />
+          {/* Redirect all other main links to ServerDown page */}
+          <Route path="/attendance" element={<ServerDown />} />
+          <Route path="/profile" element={<ServerDown />} />
+          <Route path="/assignments" element={<ServerDown />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
