@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom";
 import { BookOpen, Clock, Home, User, FileText } from "lucide-react";
 
-const Sidebar = () => {
+const Sidebar = ({ onLogout }) => {
   return (
     <div className="w-24 h-screen bg-sidebar flex flex-col items-center border-r">
       <div className="mt-6 mb-8">
@@ -35,6 +35,18 @@ const Sidebar = () => {
           <span>Assignments</span>
         </Link>
       </nav>
+      
+      {onLogout && (
+        <button 
+          onClick={onLogout} 
+          className="mt-auto mb-6 text-red-500 flex flex-col items-center text-xs font-medium"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+          </svg>
+          <span>Logout</span>
+        </button>
+      )}
     </div>
   );
 };

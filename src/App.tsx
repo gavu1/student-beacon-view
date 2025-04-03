@@ -10,6 +10,7 @@ import CGPADetail from "./pages/CGPADetail";
 import ServerDown from "./pages/ServerDown";
 import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
+import AttendanceDetail from "./pages/AttendanceDetail";
 
 const queryClient = new QueryClient();
 
@@ -55,7 +56,16 @@ const App = () => (
               </ProtectedRoute>
             }
           />
-          <Route path="/attendance" element={<ServerDown />} />
+          <Route
+            path="/attendance"
+            element={
+              <ProtectedRoute>
+                <Layout>
+                  <AttendanceDetail />
+                </Layout>
+              </ProtectedRoute>
+            }
+          />
           <Route path="/profile" element={<ServerDown />} />
           <Route path="/assignments" element={<ServerDown />} />
           <Route path="*" element={<NotFound />} />
