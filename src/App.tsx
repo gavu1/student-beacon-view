@@ -13,6 +13,20 @@ import Login from "./pages/Login";
 
 const queryClient = new QueryClient();
 
+interface ProtectedRouteProps {
+  children: React.ReactNode;
+}
+
+const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
+  const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
+  
+  if (!isAuthenticated) {
+    return <Navigate to="/login" />;
+  }
+
+  return <>{children}</>;
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
@@ -21,9 +35,26 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/login" element={<Login />} />
-          <Route path="/" element={<Layout><Dashboard /></Layout>} />
-          <Route path="/cgpa" element={<Layout><CGPADetail /></Layout>} />
-          {/* Redirect all other main links to ServerDown page */}
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute>
+                <Layout>
+                  <Dashboard />
+                </Layout>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/cgpa"
+            element={
+              <ProtectedRoute>
+                <Layout>
+                  <CGPADetail />
+                </Layout>
+              </ProtectedRoute>
+            }
+          />
           <Route path="/attendance" element={<ServerDown />} />
           <Route path="/profile" element={<ServerDown />} />
           <Route path="/assignments" element={<ServerDown />} />
